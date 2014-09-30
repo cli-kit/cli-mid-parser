@@ -25,7 +25,6 @@
   ],
   "dependencies": {
     "cli-argparse": "^0.4.3",
-    "cli-define": "^0.6.4",
     "cli-util": "^1.1.24"
   },
   "devDependencies": {
