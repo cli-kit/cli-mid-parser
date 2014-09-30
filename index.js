@@ -14,7 +14,7 @@ function getParserConfiguration(target, config) {
   var no = /^\[?no\]?/, nor = define.re.no();
   for(k in target._options) {
     arg = target._options[k];
-    if(!(arg instanceof define.Flag) && !(arg instanceof define.Option)) {
+    if(!arg.isFlag() && !arg.isOption()) {
       continue;
     }
     var names = arg.names().slice(0);
@@ -35,7 +35,7 @@ function getParserConfiguration(target, config) {
       //console.log('final key: %s', key);
     }
     config.alias[names.join(' ')] = key;
-    if(arg instanceof define.Flag) {
+    if(arg.isFlag()) {
       config.flags = config.flags.concat(names);
     }else{
       config.options = config.options.concat(names);
@@ -67,16 +67,17 @@ module.exports = function() {
     if(typeof conf.parser.configure === 'function') {
       conf.parser.configure.call(this, config);
     }
-    //console.dir(config);
+
     var result = argparse(args, config);
-    result.keys = Object.keys(result.flags).concat(Object.keys(result.options));
+    result.keys =
+      Object.keys(result.flags)
+      .concat(Object.keys(result.options));
+
     result.all = {};
     merge(result.flags, result.all);
     merge(result.options, result.all);
     result.config = config;
     req.result = result;
-    //console.log(JSON.stringify(req.result, undefined, 2));
-    //this.request(req);
     next();
   }
 }
