@@ -1,10 +1,6 @@
 var merge = require('cli-util').merge
   , argparse = require('cli-argparse');
 
-var nor = function(){
-  return /(\[no-?\]-?)/;
-}
-
 /**
  *  Retrieve a configuration suitable for passing to
  *  the arguments parser.
@@ -14,7 +10,7 @@ function getParserConfiguration(target, config) {
   config = config || {alias: {}, flags: [], options: []};
   var k, arg, key
     , conf  = this.configure();
-  var no = /^\[?no\]?/, nor = nor();
+  var no = /^\[?no\]?/, nor = /(\[no-?\]-?)/;
   for(k in target._options) {
     arg = target._options[k];
     if(!arg.isFlag() && !arg.isOption()) {
