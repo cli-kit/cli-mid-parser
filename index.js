@@ -76,7 +76,7 @@ module.exports = function() {
     result.config = config;
     req.result = result;
     //console.log(JSON.stringify(req.result, undefined, 2));
-    this.request(req);
+    //this.request(req);
     next();
   }
 }
