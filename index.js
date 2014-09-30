@@ -13,6 +13,10 @@ function getParserConfiguration(target, config) {
   var no = /^\[?no\]?/, nor = /(\[no-?\]-?)/;
   for(k in target._options) {
     arg = target._options[k];
+
+    // misconfigured option, not a valid instance
+    if(typeof arg.isArgument !== 'function') continue;
+
     if(!arg.isFlag() && !arg.isOption()) {
       continue;
     }
