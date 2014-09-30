@@ -1,7 +1,7 @@
 var merge = require('cli-util').merge
   , argparse = require('cli-argparse');
 
-var no = function(){
+var nor = function(){
   return /(\[no-?\]-?)/;
 }
 
@@ -14,7 +14,7 @@ function getParserConfiguration(target, config) {
   config = config || {alias: {}, flags: [], options: []};
   var k, arg, key
     , conf  = this.configure();
-  var no = /^\[?no\]?/, nor = no();
+  var no = /^\[?no\]?/, nor = nor();
   for(k in target._options) {
     arg = target._options[k];
     if(!arg.isFlag() && !arg.isOption()) {
@@ -67,6 +67,7 @@ module.exports = function() {
   return function parser(req, next) {
     var args = req.argv;
     var config = getParserConfiguration.call(this);
+
     if(typeof conf.parser.configure === 'function') {
       conf.parser.configure.call(this, config);
     }
