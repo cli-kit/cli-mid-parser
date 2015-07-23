@@ -7,7 +7,7 @@ var merge = require('cli-util').merge
  */
 function getParserConfiguration(target, config) {
   target = target || this;
-  config = config || {alias: {}, flags: ['--color'], options: []};
+  config = config || {alias: {}, flags: [], options: []};
   var k, arg, key
     , conf  = this.configure();
   var no = /^\[?no\]?/, nor = /(\[no-?\]-?)/;
