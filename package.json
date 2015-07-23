@@ -24,7 +24,7 @@
     "action"
   ],
   "dependencies": {
-    "cli-argparse": "~1.0.3",
+    "cli-argparse": "~1.0.5",
     "cli-util": "~1.1.27"
   },
   "devDependencies": {
